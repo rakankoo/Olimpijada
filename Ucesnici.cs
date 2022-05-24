@@ -150,5 +150,66 @@ namespace Olimpijada
                 MessageBox.Show("Molim Vas ispravno uensite svako polje!");
             }
         }
+
+        private void btDodaj_Click(object sender, EventArgs e)
+        {
+            textID.Text = "";
+            textIME.Text = "";
+            textPREZIME.Text = "";
+            textDRZAVA.Text = "";
+            textPASS.Text = "";
+            textMAIL.Text = "";
+            textDISCIPLINA.Text = "";
+            btDodaj.Enabled = false;
+            btUbaci.Enabled = true;
+            btLevo.Enabled = false;
+            btLevoSkroz.Enabled = false;
+            btDesno.Enabled = false;
+            btDesnoSkroz.Enabled = false;
+            btObrisi.Enabled = false;
+            btIzmeni.Enabled = false;
+            btOtkazi.Visible = true;
+            btOtkazi.Enabled = true;
+        }
+
+        private void btUbaci_Click(object sender, EventArgs e)
+        {
+            
+                try
+                {
+                string ime = textIME.Text;
+                string prezime = textPREZIME.Text;
+                string email = textMAIL.Text;
+                string lozinka = textPASS.Text;
+                string drzava = textDRZAVA.Text;
+                string disciplina = textDISCIPLINA.Text;
+                string naredba = $"insert into ucesnik VALUES('{ime}'" +
+                        $",'{prezime}',NULL,'{email}','{lozinka}',dbo.pronadjiIDdrz('{drzava}')," +
+                        $"dbo.pronadjiIDdisc('{disciplina}'))";
+                    SqlConnection veza = Konekcija.vezuj();
+                    SqlCommand komanda = new SqlCommand(naredba, veza);
+                    veza.Open();
+                    komanda.ExecuteNonQuery();
+                    veza.Close();
+                    MessageBox.Show("Uspesno dodata osoba!");
+                    btUbaci.Enabled = false;
+                    btDodaj.Enabled = true;
+                    btLevo.Enabled = true;
+                    btLevoSkroz.Enabled = true;
+                    btDesno.Enabled = true;
+                    btDesnoSkroz.Enabled = true;
+                    btObrisi.Enabled = true;
+                    btIzmeni.Enabled = true;
+                    btOtkazi.Visible = false;
+                    btOtkazi.Enabled = false;
+                    puni();
+                    refresh();
+                }
+                catch
+                {
+                    MessageBox.Show("Unesi sve kako treba bre!");
+                }
+            }
+        }
     }
-}
+

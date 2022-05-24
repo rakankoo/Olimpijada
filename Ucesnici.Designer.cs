@@ -78,6 +78,7 @@ namespace Olimpijada
             this.btUbaci.TabIndex = 48;
             this.btUbaci.Text = "UBACI";
             this.btUbaci.UseVisualStyleBackColor = true;
+            this.btUbaci.Click += new System.EventHandler(this.btUbaci_Click);
             // 
             // btDesnoSkroz
             // 
@@ -137,6 +138,7 @@ namespace Olimpijada
             this.btDodaj.TabIndex = 43;
             this.btDodaj.Text = "DODAJ";
             this.btDodaj.UseVisualStyleBackColor = true;
+            this.btDodaj.Click += new System.EventHandler(this.btDodaj_Click);
             // 
             // btIzmeni
             // 
